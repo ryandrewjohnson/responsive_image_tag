@@ -10,7 +10,7 @@ module ResponsiveImageTag
       def copy_javascript_file
         template 'responsive-image-tag.js',
           File.join(
-            'vendor', 'javascripts', 'responsive-image-tag.js')
+            'assets', 'vendor', 'javascripts', 'responsive-image-tag.js')
       end
 
     end
