@@ -13,21 +13,22 @@ module ResponsiveImageTag
   # NB: the @image_path@ method is a private method of the Rails
   # asset_tag_helper.
   #
-  def responsive_image_tag(small, big, options = {})
+  def responsive_image_tag(small, medium, large, options = {})
     output = tag "span", {:class => "img-placeholder"}
     output += tag "/span", nil, true
-    output += tag "noscript", noscript_attributes(small, big, options), true
-    output += image_tag(big, options)
+    output += tag "noscript", noscript_attributes(small, medium, large, options), true
+    output += image_tag(large, options)
     output += tag "/noscript", nil, true
     output
   end
 
   private
 
-  def noscript_attributes(small, big, options)
+  def noscript_attributes(small, medium, large, options)
     attrs = {
-      "data-fullsrc" => image_path(big),
-      "data-mobilesrc" => image_path(small),
+      "data-lrgsrc" => image_path(large),
+      "data-medsrc" => image_path(medium),
+      "data-smallsrc" => image_path(small),
       :class => "responsivize"
     }
     unless options.nil? || options == {}
